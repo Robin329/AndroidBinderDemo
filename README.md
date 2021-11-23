@@ -3,7 +3,7 @@ Binder sample程序，分为app, framework, native三大类，每一类生成的
 
 >- OS: Darwin 192.168.0.100 21.1.0 Darwin Kernel Version 21.1.0: Wed Oct 13 17:33:01 PDT 2021; root:xnu-8019.41.5~1/RELEASE_ARM64_T6000 arm64
 >- Android: Q
->-
+>- Device Info: Pixel 3XL
 
 |示例程序|说明|
 |---|---|
@@ -31,13 +31,13 @@ Binder sample程序，分为app, framework, native三大类，每一类生成的
 
 	source build/envsetup.sh
 	lunch 20
-	make ServerDemo -j32
-	make ClientDemo -j32
+	make NativeServerDemo -j32
+	make NativeClientDemo -j32
 
-首先将这两个ServerDemo，ClientDemo可执行文件push到手机
+首先将这两个生成在out目录下的NativeServerDemo，NativeClientDemo可执行文件push到手机
 
-	adb push ServerDemo /system/bin
-	adb push ClientDemo /system/bin
+	adb push NativeServerDemo /system/bin
+	adb push NativeClientDemo /system/bin
 
 上面的2个文件，是由/nativeBinderDemo/路径下的代码生成的，生成的文件已经放到/Output/nativeBinderDemo/目录下。如果push不成功，那么先执行`adb roo;adb remount`，再执行上面的指令；如果还不成功，可能就是权限不够。如果上述开启成功，通过开启两个窗口运行（一个运行client端，另一个运行server端）
 
@@ -85,13 +85,9 @@ Client端
 上面的4个文件，是由/FrameworkBinderDemo/路径下的代码生成的，生成的文件已经放到/Output/frameworkBinderDemo/目录下。
 
 
-服务端运行结果：
+服务端&客户端运行结果：
 
-![framework_server](/_images/framework_server.png)
-
-客户端运行结果：
-
-![framework_client](/_images/framework_client.png)
+![framework_client](/_images/framework-service-client.png)
 
 
 ## 三、 Apk Binder
@@ -125,7 +121,6 @@ Client端
 ----------
 ## NOTE:
 - 1. 需要将NativeBinderDemo放到vendor下面，否则会报`If an interface must be manually written, add its name to the whitelist`
-
-
+- 2. 先运行service端再运行client端
 
 

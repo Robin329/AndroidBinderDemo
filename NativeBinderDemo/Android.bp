@@ -1,5 +1,5 @@
 cc_binary {
-    name: "ServerDemo",
+    name: "NativeServerDemo",
     shared_libs: [
         "libcutils",
         "libutils",
@@ -14,7 +14,7 @@ cc_binary {
 }
 
 cc_binary {
-    name: "ClientDemo",
+    name: "NativeClientDemo",
     shared_libs: [
         "libcutils",
         "libutils",
@@ -25,5 +25,6 @@ cc_binary {
         "IMyService.cpp",
         "ClientDemo.cpp",
     ],
+    cflags: ["-Wunused-parameter"],
 
 }

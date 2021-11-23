@@ -1,0 +1,5 @@
+android_app {
+    name: "BinderDemo",
+    sdk_version: "8",
+    srcs: ["**/*.java"],
+}
